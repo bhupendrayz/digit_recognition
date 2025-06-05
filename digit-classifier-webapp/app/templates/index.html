@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digit Classifier</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 450px;
+            margin-top: 80px;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+            padding: 40px 30px 30px 30px;
+        }
+        .btn-primary {
+            background: linear-gradient(90deg, #f7971e 0%, #ffd200 100%);
+            border: none;
+            color: #333;
+            font-weight: bold;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(90deg, #ffd200 0%, #f7971e 100%);
+            color: #222;
+        }
+        .custom-file-input ~ .custom-file-label::after {
+            content: "Browse";
+        }
+        h1 {
+            font-weight: 700;
+            color: #f7971e;
+        }
+        .lead {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container text-center">
+        <h1>Digit Classifier</h1>
+        <p class="lead mb-4">Upload an image of a handwritten digit (0-9) to classify it.</p>
+        <form action="/predict" method="post" enctype="multipart/form-data">
+            <div class="custom-file mb-3">
+                <input type="file" class="custom-file-input" id="file" name="file" accept="image/*" required>
+                <label class="custom-file-label text-left" for="file">Choose image...</label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Predict</button>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script>
+        // Show selected file name
+        $('.custom-file-input').on('change', function() {
+            let fileName = $(this).val().split('\\').pop();
+            $(this).next('.custom-file-label').addClass("selected").html(fileName);
+        });
+    </script>
+</body>
+</html>
